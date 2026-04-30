@@ -58,8 +58,9 @@ module.exports = {
                 { context: './src/', from : '**/*.(hbs|html)', to : '[path][name].html' },
                 { context: './', from : 'README.md', to : './' },
                 { context: './', from : 'LICENSE', to : './' },
-                { context: './src/assets', from: '**/*.png', to: './assets/'}
-            ]
+            { context: './src/assets', from: '**/*.png', to: './assets/'},
+            { context: './src/', from: 'styles/fv14-icon-compat.css', to: 'styles/fv14-icon-compat.css' }
+        ]
         }),
         new MangleCssClassPlugin({
             classNameRegExp: 'fsc-[a-z\-][a-zA-Z0-9_\-]*',
