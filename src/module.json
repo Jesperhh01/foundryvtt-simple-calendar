@@ -29,7 +29,8 @@
 		"./index.js"
 	],
 	"styles": [
-		"./styles/calendar.css"
+		"./styles/calendar.css",
+		"./styles/fv14-icon-compat.css"
 	],
 	"packs": [],
 	"languages": [

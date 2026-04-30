@@ -1,0 +1,53 @@
+/* Local Foundry v14 compatibility shim.
+   Simple Calendar 2.4.18 is verified through Foundry v12 and relies on
+   host-provided Font Awesome classes. Foundry v14 exposes Font Awesome through
+   --font-awesome / --font-awesome-duotone, so keep this scoped to the module. */
+.simple-calendar .fa,
+.simple-calendar .fas,
+.simple-calendar .fa-solid,
+.simple-calendar-configuration .fa,
+.simple-calendar-configuration .fas,
+.simple-calendar-configuration .fa-solid,
+.simple-calendar-note .fa,
+.simple-calendar-note .fas,
+.simple-calendar-note .fa-solid,
+[class^="fsc-"] .fa,
+[class^="fsc-"] .fas,
+[class^="fsc-"] .fa-solid,
+[class*=" fsc-"] .fa,
+[class*=" fsc-"] .fas,
+[class*=" fsc-"] .fa-solid {
+  font-family: var(--font-awesome, "Font Awesome 7 Pro") !important;
+  font-weight: 900 !important;
+  font-style: normal;
+}
+
+.simple-calendar .far,
+.simple-calendar .fa-regular,
+.simple-calendar-configuration .far,
+.simple-calendar-configuration .fa-regular,
+.simple-calendar-note .far,
+.simple-calendar-note .fa-regular,
+[class^="fsc-"] .far,
+[class^="fsc-"] .fa-regular,
+[class*=" fsc-"] .far,
+[class*=" fsc-"] .fa-regular {
+  font-family: var(--font-awesome, "Font Awesome 7 Pro") !important;
+  font-weight: 400 !important;
+  font-style: normal;
+}
+
+.simple-calendar .fab,
+.simple-calendar .fa-brands,
+.simple-calendar-configuration .fab,
+.simple-calendar-configuration .fa-brands,
+.simple-calendar-note .fab,
+.simple-calendar-note .fa-brands,
+[class^="fsc-"] .fab,
+[class^="fsc-"] .fa-brands,
+[class*=" fsc-"] .fab,
+[class*=" fsc-"] .fa-brands {
+  font-family: "Font Awesome 7 Brands" !important;
+  font-weight: 400 !important;
+  font-style: normal;
+}
