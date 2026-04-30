@@ -39,13 +39,21 @@ export default class NoteManager {
         Journal.registerSheet(ModuleName, NoteSheet, { types: ["base"], makeDefault: false, label: "Simple Calendar: Note Sheet" });
     }
 
+    private getJournalDirectoryFolders(): Folder[] {
+        const journalDirectory = (<Game>game).journal?.directory;
+        if (journalDirectory?.folders?.length) {
+            return journalDirectory.folders;
+        }
+        return (<Game>game).folders?.filter((folder: Folder) => folder.type === "JournalEntry") ?? [];
+    }
+
     /**
      * Checks to see if the journal director for SC notes exists and creates it if it does not
      */
     public async createJournalDirectory() {
-        const journalDirectory = (<Game>game).journal?.directory;
-        if (journalDirectory) {
-            this.noteDirectory = journalDirectory.folders.find((f) => {
+        const journalFolders = this.getJournalDirectoryFolders();
+        if (journalFolders.length) {
+            this.noteDirectory = journalFolders.find((f) => {
                 return f.getFlag(ModuleName, "root");
             });
             if (!this.noteDirectory && GameSettings.IsGm()) {
@@ -59,7 +67,7 @@ export default class NoteManager {
                         }
                     }
                 });
-                this.noteDirectory = journalDirectory.folders.find((f) => {
+                this.noteDirectory = this.getJournalDirectoryFolders().find((f) => {
                     return f.getFlag(ModuleName, "root");
                 });
             }
@@ -190,10 +198,10 @@ export default class NoteManager {
             this.notes = {};
             await this.loadNotesFromFolder(this.noteDirectory);
 
-            const journalDirectory = (<Game>game).journal?.directory;
-            if (journalDirectory) {
-                for (let i = 0; i < journalDirectory.folders.length; i++) {
-                    const f = journalDirectory.folders[i];
+            const journalFolders = this.getJournalDirectoryFolders();
+            if (journalFolders.length) {
+                for (let i = 0; i < journalFolders.length; i++) {
+                    const f = journalFolders[i];
                     if (f.folder && f.folder.id === this.noteDirectory.id) {
                         await this.loadNotesFromFolder(f);
                     }
