@@ -350,7 +350,7 @@ export default class MainApp extends FormApplication {
         };
 
         // Render the template and return the promise
-        const template = await renderTemplate("templates/app-window.html", windowData);
+        const template = await foundry.applications.handlebars.renderTemplate("templates/app-window.html", windowData);
         let html = $(template);
 
         // Activate header button click listeners after a slight timeout to prevent immediate interaction
@@ -373,8 +373,8 @@ export default class MainApp extends FormApplication {
         }
 
         // Set the outer frame z-index
-        if (Object.keys(ui.windows).length === 0) _maxZ = 100 - 1;
-        this.position.zIndex = Math.min(++_maxZ, 9999);
+        if (Object.keys(ui.windows).length === 0) foundry.applications.api.ApplicationV2._maxZ = 100 - 1;
+        this.position.zIndex = Math.min(++foundry.applications.api.ApplicationV2._maxZ, 9999);
         html.css({ zIndex: this.position.zIndex });
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
